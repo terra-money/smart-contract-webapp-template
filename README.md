@@ -2,6 +2,7 @@
 
 ## Requirements
 
+- Install Docker <https://docs.docker.com/get-docker/>
 - Run LocalTerra <https://github.com/terra-money/LocalTerra>
 - Install Rust <https://www.rust-lang.org/tools/install>
 - Install Node.js `brew install node` (Need `npm@8` or higher)
