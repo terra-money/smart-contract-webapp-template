@@ -1,0 +1,23 @@
+{
+  "$schema": "https://assets.terra.money/schemas/web-extension-test-config.json",
+  "wallets": [
+    {
+      "name": "validator",
+      "mnemonic": "satisfy adjust timber high purchase tuition stool faith fine install that you unaware feed domain license impose boss human eager hat rent enjoy dawn"
+    },
+    {
+      "name": "test1",
+      "mnemonic": "notice oak worry limit wrap speak medal online prefer cluster roof addict wrist behave treat actual wasp year salad speed social layer crew genius"
+    }
+  ],
+  "networks": [
+    {
+      "name": "localterra",
+      "chainID": "localterra",
+      "lcd": "http://localhost:3060"
+    }
+  ],
+  "approvedHostnames": ["localhost"],
+  "selectedWallet": "test1",
+  "selectedNetwork": "localterra"
+}
