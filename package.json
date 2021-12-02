@@ -11,7 +11,8 @@
     "start:app": "npm run start --workspace=@workspace/app",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "lint-staged": "lint-staged"
   },
   "lint-staged": {
     "**/src/{**/*,*}.{ts,tsx}": [
