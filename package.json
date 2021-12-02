@@ -7,8 +7,8 @@
   "scripts": {
     "build:contracts": "zx scripts/build.contracts.mjs",
     "build:schema": "zx scripts/build.schema.mjs",
-    "deploy:contracts": "yarn run build:contracts && zx scripts/deploy.contracts.mjs",
-    "start:app": "yarn workspace @workspace/app run start",
+    "deploy:contracts": "npm run build:contracts && zx scripts/deploy.contracts.mjs",
+    "start:app": "npm run start --workspace=@workspace/app",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "postinstall": "husky install"

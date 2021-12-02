@@ -4,8 +4,7 @@
 
 - Run LocalTerra <https://github.com/terra-money/LocalTerra>
 - Install Rust <https://www.rust-lang.org/tools/install>
-- Install Node.js `brew install node`
-- Install Yarn `npm install -g yarn`
+- Install Node.js `brew install node` (Need `npm@8` or higher)
 
 ## Start development
 
@@ -13,13 +12,13 @@
 git clone https://github.com/terra-smart-contract-basic app
 cd app
 
-yarn install
+npm install
 
-yarn run deploy:contracts
-yarn run start:app
+npm run deploy:contracts
+npm run start:app
 
 # After that, if you updated contracts
-yarn run deploy:contracts
+npm run deploy:contracts
 ```
 
 ## Configuration
