@@ -1,6 +1,5 @@
 import { MsgInstantiateContract, MsgStoreCode } from '@terra-money/terra.js';
 import fs from 'fs/promises';
-import path from 'path';
 import {
   ARTIFACTS,
   CONTRACT_ADMIN_ADDRESS,

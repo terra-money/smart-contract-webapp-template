@@ -1,5 +1,4 @@
 import { Fee, LCDClient, LocalTerra } from '@terra-money/terra.js';
-import path from 'path';
 
 const { wallets } = new LocalTerra();
 
@@ -18,4 +17,6 @@ export const LOCALTERRA_CLIENT = new LCDClient({
 
 export const DEPLOY_FEE = new Fee(2000000, '1000000uluna');
 
-export const CONTRACT_INFORMATION_TARGETS = [path.resolve(ROOT, 'app/src/contracts.json')];
+export const CONTRACT_INFORMATION_TARGETS = [
+  path.resolve(ROOT, 'app/src/contracts.json'),
+];
