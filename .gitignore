@@ -31,3 +31,4 @@ build/
 test/storage/
 .eslintcache
 target/
+artifacts/*.localterra.json
