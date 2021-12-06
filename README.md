@@ -2,6 +2,8 @@
 
 This is a template that can develop both smart contract and web app.
 
+> ⚠️ I tested this template only in macOS
+
 # How to use
 
 ## Requirements
