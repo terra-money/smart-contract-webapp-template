@@ -10,7 +10,8 @@
     "contract:types": "zx scripts/build.types.mjs",
     "app:start": "npm run start --workspace=@workspace/app",
     "build": "npm run contract:build && npm run contract:schema && npm run contract:types",
-    "deploy": "npm run build && zx scripts/deploy.contracts.mjs"
+    "deploy": "npm run build && zx scripts/deploy.contracts.mjs",
+    "test": "cargo test && CI=true npm run test --workspace=@workspace/app"
   },
   "workspaces": [
     "app"

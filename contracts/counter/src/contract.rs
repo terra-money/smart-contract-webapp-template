@@ -97,7 +97,6 @@ pub fn migrate(_deps: DepsMut, _env: Env, _msg: MigrateMsg) -> StdResult<Respons
 mod tests {
   use super::*;
   use cosmwasm_std::testing::{mock_dependencies, mock_env, mock_info};
-  use cosmwasm_std::WasmMsg::Execute;
   use cosmwasm_std::{coins, from_binary};
 
   #[test]

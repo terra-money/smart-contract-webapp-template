@@ -8,7 +8,7 @@
     "app:browser": "PORT=3000 node scripts/start.mjs",
     "start": "multiplerun dev",
     "build": "react-scripts build",
-    "test": "react-scripts test --colors"
+    "test": "react-scripts test --colors --passWithNoTests"
   },
   "multiplerun": {
     "dev": [
