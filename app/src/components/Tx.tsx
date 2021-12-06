@@ -7,7 +7,7 @@ import {
 import { NetworkInfo, useConnectedWallet } from '@terra-money/wallet-provider';
 import { useContracts } from 'contexts/contracts';
 import { counter } from 'contract';
-import { QUERY_KEYS, TX_KEYS, TX_REFETCH_MAP } from 'env';
+import { TX_KEYS, TX_REFETCH_MAP } from 'env';
 import React, { useCallback } from 'react';
 import { useQueryClient } from 'react-query';
 
@@ -42,7 +42,7 @@ export function Tx() {
         if (pollResult.logs && pollResult.logs?.length > 0) {
           await Promise.all(
             TX_REFETCH_MAP[txKey].map((queryKey) => {
-              queryClient.invalidateQueries(QUERY_KEYS.GET_COUNT, {
+              queryClient.invalidateQueries(queryKey, {
                 refetchActive: true,
                 refetchInactive: false,
               });
