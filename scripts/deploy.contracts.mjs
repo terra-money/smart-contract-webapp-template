@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 import {
   ARTIFACTS,
   CONTRACT_ADMIN_ADDRESS,
-  CONTRACT_INFORMATION_TARGETS,
+  CONTRACT_INFORMATION_TARGETS, CONTRACT_INIT_MESSAGES,
   CONTRACT_SENDER,
   DEPLOY_FEE,
   LOCALTERRA_CLIENT,
@@ -54,9 +54,7 @@ for (const name of wasmBaseNames) {
         CONTRACT_SENDER.key.accAddress,
         CONTRACT_ADMIN_ADDRESS,
         +codeId,
-        {
-          count: 0,
-        },
+        CONTRACT_INIT_MESSAGES[name],
       ),
     ],
     fee: DEPLOY_FEE,

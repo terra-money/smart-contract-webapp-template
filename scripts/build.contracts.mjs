@@ -1,7 +1,10 @@
-import { ROOT, PROJECT_NAME } from './env.mjs';
-import { isWasm32Exists } from './helpers/isWasm32Exists.mjs';
+import { PROJECT_NAME, ROOT } from './env.mjs';
 
-const wasm32Exists = await isWasm32Exists();
+// add rust wasm32-unknown-unknown if not exists
+const { stdout: rustupTargetList } = await $`rustup target list --installed`;
+const wasm32Exists = rustupTargetList
+  .split('\n')
+  .some((target) => target === 'wasm32-unknown-unknown');
 
 if (!wasm32Exists) {
   await $`rustup target add wasm32-unknown-unknown`;

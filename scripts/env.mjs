@@ -20,3 +20,9 @@ export const DEPLOY_FEE = new Fee(2000000, '1000000uluna');
 export const CONTRACT_INFORMATION_TARGETS = [
   path.resolve(ROOT, 'app/src/contracts.json'),
 ];
+
+export const CONTRACT_INIT_MESSAGES = {
+  counter: {
+    count: 0,
+  }
+}

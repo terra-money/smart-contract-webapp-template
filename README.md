@@ -1,24 +1,37 @@
+# Terra development template
+
+This is a template that can develop both smart contract and web app.
+
 # How to use
 
 ## Requirements
 
 - Install Docker <https://docs.docker.com/get-docker/>
-- Run LocalTerra <https://github.com/terra-money/LocalTerra>
 - Install Rust <https://www.rust-lang.org/tools/install>
-- Install Node.js `brew install node` (Need `npm@8` or higher)
+- Install Node.js `brew install node` (required `npm@8` or higher)
 
 ## Start development
 
+Start LocalTerra
+
 ```sh
-git clone https://github.com/terra-smart-contract-basic myapp
+git clone --depth=1 https://github.com/terra-money/localterra
+cd localterra
+docker-compose up
+```
+
+Start app development
+
+```sh
+git clone https://github.com/iamssen/terra-smart-contract-basic myapp
 cd myapp
 
 npm install
 
-npm run deploy
-npm run app:start
+npm run deploy # build contracts -> build schema -> build contract types 
+npm run app:start # run web app
 
-# After that, if you updated contracts
+# After that, if you have modified the /contracts source codes, run it again.
 npm run deploy
 ```
 
