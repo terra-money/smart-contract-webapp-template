@@ -1,0 +1,13 @@
+export enum QUERY_KEYS {
+  GET_COUNT = "GET_COUNT",
+}
+
+export enum TX_KEYS {
+  INCREMENT = "INCREMENT",
+  DECREMENT = "DECREMENT",
+}
+
+export const TX_REFETCH_MAP = {
+  [TX_KEYS.INCREMENT]: [QUERY_KEYS.GET_COUNT],
+  [TX_KEYS.DECREMENT]: [QUERY_KEYS.GET_COUNT],
+} as const;

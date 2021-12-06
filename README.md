@@ -44,10 +44,6 @@ npm run deploy
 
 # TODO
 
-## Basic
-
-- [ ] Migration? `MsgMigrateCode` or `MsgMigrateContract`?
-
 ## After
 
 - [ ] Make to a template <https://github.com/terra-money/my-terra-token>

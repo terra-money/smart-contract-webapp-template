@@ -7,6 +7,7 @@ import {
 import { NetworkInfo, useConnectedWallet } from '@terra-money/wallet-provider';
 import { useContracts } from 'contexts/contracts';
 import { counter } from 'contract';
+import { QUERY_KEYS, TX_KEYS, TX_REFETCH_MAP } from 'env';
 import React, { useCallback } from 'react';
 import { useQueryClient } from 'react-query';
 
@@ -16,7 +17,7 @@ export function Tx() {
   const queryClient = useQueryClient();
 
   const postTx = useCallback(
-    async <T extends {}>(executeMsg: T) => {
+    async <T extends {}>(txKey: TX_KEYS, executeMsg: T) => {
       if (!connectedWallet || !counterAddr) {
         return;
       }
@@ -39,10 +40,14 @@ export function Tx() {
         );
 
         if (pollResult.logs && pollResult.logs?.length > 0) {
-          await queryClient.invalidateQueries('get_count', {
-            refetchActive: true,
-            refetchInactive: false,
-          });
+          await Promise.all(
+            TX_REFETCH_MAP[txKey].map((queryKey) => {
+              queryClient.invalidateQueries(QUERY_KEYS.GET_COUNT, {
+                refetchActive: true,
+                refetchInactive: false,
+              });
+            }),
+          );
         }
       } catch (error) {
         console.error(error);
@@ -52,13 +57,13 @@ export function Tx() {
   );
 
   const increment = useCallback(() => {
-    postTx<counter.ExecuteMsg.Increment>({
+    postTx<counter.ExecuteMsg.Increment>(TX_KEYS.INCREMENT, {
       increment: {},
     });
   }, [postTx]);
 
   const decrement = useCallback(() => {
-    postTx<counter.ExecuteMsg.Decrement>({
+    postTx<counter.ExecuteMsg.Decrement>(TX_KEYS.DECREMENT, {
       decrement: {},
     });
   }, [postTx]);
@@ -77,7 +82,7 @@ export function Tx() {
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export async function pollTxInfo(
+async function pollTxInfo(
   network: NetworkInfo,
   txhash: string,
 ): Promise<TxInfo> {
