@@ -6,6 +6,7 @@ import {
 } from '@terra-money/terra.js';
 import { NetworkInfo, useConnectedWallet } from '@terra-money/wallet-provider';
 import { useContracts } from 'contexts/contracts';
+import { counter } from 'contract';
 import React, { useCallback } from 'react';
 import { useQueryClient } from 'react-query';
 
@@ -14,46 +15,62 @@ export function Tx() {
   const { counterAddr } = useContracts();
   const queryClient = useQueryClient();
 
-  const proceed = useCallback(async () => {
-    if (!connectedWallet || !counterAddr) {
-      return;
-    }
-
-    try {
-      const { result } = await connectedWallet.post({
-        msgs: [
-          new MsgExecuteContract(connectedWallet.terraAddress, counterAddr, {
-            increment: {},
-          }),
-        ],
-        fee: new Fee(1000000, '200000uusd'),
-      });
-
-      const pollResult = await pollTxInfo(
-        connectedWallet.network,
-        result.txhash,
-      );
-
-      if (pollResult.logs && pollResult.logs?.length > 0) {
-        await queryClient.invalidateQueries('get_count', {
-          refetchActive: true,
-          refetchInactive: false,
-        });
+  const postTx = useCallback(
+    async <T extends {}>(executeMsg: T) => {
+      if (!connectedWallet || !counterAddr) {
+        return;
       }
-    } catch (error) {
-      console.error(error);
-    }
-  }, [connectedWallet, counterAddr, queryClient]);
 
-  if (!connectedWallet) {
+      try {
+        const { result } = await connectedWallet.post({
+          msgs: [
+            new MsgExecuteContract(
+              connectedWallet.terraAddress,
+              counterAddr,
+              executeMsg,
+            ),
+          ],
+          fee: new Fee(1000000, '200000uusd'),
+        });
+
+        const pollResult = await pollTxInfo(
+          connectedWallet.network,
+          result.txhash,
+        );
+
+        if (pollResult.logs && pollResult.logs?.length > 0) {
+          await queryClient.invalidateQueries('get_count', {
+            refetchActive: true,
+            refetchInactive: false,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [connectedWallet, counterAddr, queryClient],
+  );
+
+  const increment = useCallback(() => {
+    postTx<counter.ExecuteMsg.Increment>({
+      increment: {},
+    });
+  }, [postTx]);
+
+  const decrement = useCallback(() => {
+    postTx<counter.ExecuteMsg.Decrement>({
+      decrement: {},
+    });
+  }, [postTx]);
+
+  if (!connectedWallet || !connectedWallet.availablePost) {
     return null;
   }
 
   return (
     <div>
-      {connectedWallet && connectedWallet.availablePost && (
-        <button onClick={proceed}>Increment</button>
-      )}
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
     </div>
   );
 }

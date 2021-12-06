@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QueryMsg",
+  "oneOf": [
+    {
+      "description": "@return CountResponse",
+      "type": "object",
+      "required": [
+        "get_count"
+      ],
+      "properties": {
+        "get_count": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

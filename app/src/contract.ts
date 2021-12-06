@@ -1,6 +1,7 @@
 // DO NOT EDIT MANUALLY : THIS FILE IS AUTO CREATED
-/* eslint-disable @typescript-eslint/no-shadow */
-//noinspection JSUnusedGlobalSymbols
+/* eslint-disable */
+// prettier-ignore
+// noinspection JSUnusedGlobalSymbols
 
 export type int32 = number;
 /**A human readable address.
@@ -12,16 +13,42 @@ This type represents a validated address. It can be created in the following way
 This type is immutable. If you really need to mutate it (Really? Are you sure?), create a mutable copy using `let mut mutable = Addr::to_string()` and operate on that `String` instance.*/
 export type Addr = string;
 export namespace counter {
-  export interface CountResponse {
-    count: int32;
-  }
-  export interface ExecuteMsg {}
-  export interface InstantiateMsg {
-    count: int32;
-  }
-  export interface QueryMsg {}
-  export interface State {
-    count: int32;
-    owner: Addr;
-  }
+    /**Response type of QueryMsg.GetCount*/
+    export interface CountResponse {
+        /**count property*/
+        count: int32;
+    }
+    export namespace ExecuteMsg {
+        /**increment count*/
+        export interface Increment {
+            increment: {};
+        }
+        /**decrement count*/
+        export interface Decrement {
+            decrement: {};
+        }
+        /**reset count (contract owner only)*/
+        export interface Reset {
+            reset: {
+                /**count*/
+                count: int32;
+            };
+        }
+    }
+    export interface InstantiateMsg {
+        /**count*/
+        count: int32;
+    }
+    export namespace QueryMsg {
+        /**@return CountResponse*/
+        export interface GetCount {
+            get_count: {};
+        }
+    }
+    export interface State {
+        /**count state*/
+        count: int32;
+        /**contract owner*/
+        owner: Addr;
+    }
 }

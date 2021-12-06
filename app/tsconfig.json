@@ -19,13 +19,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "watch": false,
-    "jsx": "react",
+    "watch": true,
+    "jsx": "react-jsx",
     "baseUrl": "src"
   },
   "include": [
-    "src",
-    "scripts",
-    "vite.config.ts"
+    "src"
   ]
 }

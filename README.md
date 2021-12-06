@@ -10,21 +10,21 @@
 ## Start development
 
 ```sh
-git clone https://github.com/terra-smart-contract-basic app
-cd app
+git clone https://github.com/terra-smart-contract-basic myapp
+cd myapp
 
 npm install
 
-npm run deploy:contracts
-npm run start:app
+npm run deploy
+npm run app:start
 
 # After that, if you updated contracts
-npm run deploy:contracts
+npm run deploy
 ```
 
 ## Configuration
 
-- [app/scripts/start.config.json](app/scripts/start.config.json) : Developers may immediately execute a browser in which the wallet and localterra network are already set.
+- [station.config.json](station.config.json) : Developers may immediately execute a browser in which the wallet and localterra network are already set.
 - [scripts](scripts) : It just runs in [zx](https://github.com/google/zx) script without any CLI tool. 
 
 # TODO

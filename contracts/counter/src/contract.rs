@@ -40,6 +40,7 @@ pub fn execute(
 ) -> Result<Response, ContractError> {
     match msg {
         ExecuteMsg::Increment {} => try_increment(deps),
+        ExecuteMsg::Decrement {} => try_decrement(deps),
         ExecuteMsg::Reset { count } => try_reset(deps, info, count),
     }
 }
@@ -52,6 +53,16 @@ pub fn try_increment(deps: DepsMut) -> Result<Response, ContractError> {
 
     Ok(Response::new().add_attribute("method", "try_increment"))
 }
+
+pub fn try_decrement(deps: DepsMut) -> Result<Response, ContractError> {
+    STATE.update(deps.storage, |mut state | -> Result<_, ContractError> {
+        state.count -= 1;
+        Ok(state)
+    })?;
+
+    Ok(Response::new().add_attribute("method", "try_decrement"))
+}
+
 pub fn try_reset(deps: DepsMut, info: MessageInfo, count: i32) -> Result<Response, ContractError> {
     STATE.update(deps.storage, |mut state| -> Result<_, ContractError> {
         if info.sender != state.owner {
@@ -80,6 +91,7 @@ mod tests {
     use super::*;
     use cosmwasm_std::testing::{mock_dependencies, mock_env, mock_info};
     use cosmwasm_std::{coins, from_binary};
+    use cosmwasm_std::WasmMsg::Execute;
 
     #[test]
     fn proper_initialization() {
@@ -115,6 +127,23 @@ mod tests {
         let res = query(deps.as_ref(), mock_env(), QueryMsg::GetCount {}).unwrap();
         let value: CountResponse = from_binary(&res).unwrap();
         assert_eq!(18, value.count);
+    }
+
+    #[test]
+    fn decrement() {
+        let mut deps = mock_dependencies(&coins(2, "token"));
+
+        let msg = InstantiateMsg { count: 17 };
+        let info = mock_info("creator", &coins(2, "token"));
+        let _res = instantiate(deps.as_mut(), mock_env(), info, msg).unwrap();
+
+        let info = mock_info("anyone", &coins(2, "token"));
+        let msg = ExecuteMsg::Decrement {};
+        let _res = execute(deps.as_mut(), mock_env(), info, msg).unwrap();
+
+        let res = query(deps.as_ref(), mock_env(), QueryMsg::GetCount {}).unwrap();
+        let value: CountResponse = from_binary(&res).unwrap();
+        assert_eq!(16, value.count);
     }
 
     #[test]

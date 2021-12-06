@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "InstantiateMsg",
+  "type": "object",
+  "required": [
+    "count"
+  ],
+  "properties": {
+    "count": {
+      "description": "count",
+      "type": "integer",
+      "format": "int32"
+    }
+  }
+}

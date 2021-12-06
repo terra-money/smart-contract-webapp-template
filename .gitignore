@@ -30,6 +30,4 @@ dev/
 build/
 test/storage/
 .eslintcache
-artifacts/
-schema/
 target/

@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CountResponse",
+  "description": "Response type of QueryMsg.GetCount",
+  "type": "object",
+  "required": [
+    "count"
+  ],
+  "properties": {
+    "count": {
+      "description": "count property",
+      "type": "integer",
+      "format": "int32"
+    }
+  }
+}

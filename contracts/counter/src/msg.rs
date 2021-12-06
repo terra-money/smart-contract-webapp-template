@@ -3,25 +3,36 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
-    pub count: i32,
+  /// count
+  pub count: i32,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum ExecuteMsg {
-    Increment {},
-    Reset { count: i32 },
+  /// increment count
+  Increment {},
+
+  /// decrement count
+  Decrement {},
+
+  /// reset count (contract owner only)
+  Reset {
+    /// count
+    count: i32,
+  },
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
-    // GetCount returns the current count as a json-encoded number
-    GetCount {},
+  /// @return CountResponse
+  GetCount {},
 }
 
-// We define a custom struct for each query response
+/// Response type of QueryMsg.GetCount
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct CountResponse {
-    pub count: i32,
+  /// count property
+  pub count: i32,
 }

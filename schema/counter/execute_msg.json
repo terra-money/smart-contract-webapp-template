@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ExecuteMsg",
+  "oneOf": [
+    {
+      "description": "increment count",
+      "type": "object",
+      "required": [
+        "increment"
+      ],
+      "properties": {
+        "increment": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "description": "decrement count",
+      "type": "object",
+      "required": [
+        "decrement"
+      ],
+      "properties": {
+        "decrement": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "description": "reset count (contract owner only)",
+      "type": "object",
+      "required": [
+        "reset"
+      ],
+      "properties": {
+        "reset": {
+          "type": "object",
+          "required": [
+            "count"
+          ],
+          "properties": {
+            "count": {
+              "description": "count",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}
