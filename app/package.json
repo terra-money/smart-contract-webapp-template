@@ -30,14 +30,6 @@
       "cross-env CI=true react-scripts test --colors --findRelatedTests"
     ]
   },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.ts?(x)",
-      "!**/*.d.ts?(x)",
-      "!**/*.stories.ts?(x)",
-      "!**/__*__/**"
-    ]
-  },
   "browserslist": {
     "production": [
       "chrome > 60",

@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "downlevelIteration": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "watch": true,
+    "baseUrl": "src"
+  },
+  "include": [
+    "src"
+  ]
+}

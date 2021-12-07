@@ -3,5 +3,8 @@ import { ROOT } from './env.mjs';
 
 generate({
   schemaDir: path.resolve(ROOT, 'schema'),
-  outFile: path.resolve(ROOT, 'app/src/contract.ts'),
+  outFile: [
+    path.resolve(ROOT, 'app/src/contract.ts'),
+    path.resolve(ROOT, 'test/src/contract.ts'),
+  ],
 });

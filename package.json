@@ -11,10 +11,12 @@
     "app:start": "npm run start --workspace=@workspace/app",
     "build": "npm run contract:build && npm run contract:schema && npm run contract:types",
     "deploy": "npm run build && zx scripts/deploy.contracts.mjs",
-    "test": "cargo test && CI=true npm run test --workspace=@workspace/app"
+    "test": "cargo test && CI=true npm run test --workspace=@workspace/app",
+    "test:integration": "npm run test --workspace=@workspace/test"
   },
   "workspaces": [
-    "app"
+    "app",
+    "test"
   ],
   "devDependencies": {
     "@ssen/eslint-config": "^2.0.1",
@@ -23,7 +25,7 @@
     "@types/json-schema": "^7.0.9",
     "@types/node": "^16.11.11",
     "@types/readable-stream": "^2.3.12",
-    "cosmwasm-typescript-generator": "^0.4.2",
+    "cosmwasm-typescript-generator": "^0.4.3",
     "eslint": "^7.32.0",
     "readable-stream": "^3.6.0",
     "typescript": "^4.5.2",

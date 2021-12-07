@@ -2,8 +2,8 @@ import {
   MsgInstantiateContract,
   MsgMigrateContract,
   MsgStoreCode,
-} from "@terra-money/terra.js";
-import fs from "fs/promises";
+} from '@terra-money/terra.js';
+import fs from 'fs/promises';
 import {
   ARTIFACTS,
   CONTRACT_ADMIN_ADDRESS,
@@ -12,11 +12,11 @@ import {
   CONTRACT_SENDER,
   DEPLOY_FEE,
   LOCALTERRA_CLIENT,
-} from "./env.mjs";
+} from './env.mjs';
 
 const wasmFiles = await glob(`${ARTIFACTS}/*.wasm`);
 const wasmBaseNames = wasmFiles.map((wasmFile) =>
-  path.basename(wasmFile, ".wasm")
+  path.basename(wasmFile, '.wasm'),
 );
 
 const contracts = [];
@@ -34,7 +34,7 @@ for (const name of wasmBaseNames) {
   // stringify wasm files to base64 codes
   // ---------------------------------------------
   const buffer = await fs.readFile(path.resolve(ARTIFACTS, `${name}.wasm`));
-  const wasmBase64 = buffer.toString("base64");
+  const wasmBase64 = buffer.toString('base64');
 
   // ---------------------------------------------
   // store wasm codes into the chain
@@ -46,9 +46,9 @@ for (const name of wasmBaseNames) {
 
   const storeCodeRes = await LOCALTERRA_CLIENT.tx.broadcast(storeCodeTx);
 
-  const codeId = storeCodeRes.logs[0].events
-    .find(({ type }) => type === "store_code")
-    .attributes.find(({ key }) => key === "code_id").value;
+  const codeID = storeCodeRes.logs[0].events
+    .find(({ type }) => type === 'store_code')
+    .attributes.find(({ key }) => key === 'code_id').value;
 
   // ---------------------------------------------
   // instantiate wasm codes on the chain to smart contracts
@@ -59,8 +59,8 @@ for (const name of wasmBaseNames) {
     const msg = new MsgInstantiateContract(
       CONTRACT_SENDER.key.accAddress,
       CONTRACT_ADMIN_ADDRESS,
-      +codeId,
-      CONTRACT_INIT_MESSAGES[name]
+      +codeID,
+      CONTRACT_INIT_MESSAGES[name],
     );
 
     const tx = await CONTRACT_SENDER.createAndSignTx({
@@ -71,27 +71,27 @@ for (const name of wasmBaseNames) {
     const res = await LOCALTERRA_CLIENT.tx.broadcast(tx);
 
     const contractAddress = res.logs[0].events
-      .find(({ type }) => type === "instantiate_contract")
-      .attributes.find(({ key }) => key === "contract_address").value;
+      .find(({ type }) => type === 'instantiate_contract')
+      .attributes.find(({ key }) => key === 'contract_address').value;
 
     data = {
       chainID,
       name,
-      codeId,
+      codeID,
       contractAddress,
     };
 
     contracts.push(data);
   } else {
     const prevData = await fs
-      .readFile(deployment, { encoding: "utf8" })
+      .readFile(deployment, { encoding: 'utf8' })
       .then(JSON.parse);
 
     const msg = new MsgMigrateContract(
       CONTRACT_ADMIN_ADDRESS,
       prevData.contractAddress,
-      +codeId,
-      {}
+      +codeID,
+      {},
     );
 
     const tx = await CONTRACT_SENDER.createAndSignTx({
@@ -107,7 +107,7 @@ for (const name of wasmBaseNames) {
 
     data = {
       ...prevData,
-      codeId,
+      codeID,
     };
 
     contracts.push(data);
@@ -117,12 +117,12 @@ for (const name of wasmBaseNames) {
   // register smart contracts information
   // ---------------------------------------------
   await fs.writeFile(deployment, JSON.stringify(data, null, 2), {
-    encoding: "utf8",
+    encoding: 'utf8',
   });
 }
 
 for (const file of CONTRACT_INFORMATION_TARGETS) {
   await fs.writeFile(file, JSON.stringify(contracts, null, 2), {
-    encoding: "utf8",
+    encoding: 'utf8',
   });
 }
