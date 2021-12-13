@@ -41,7 +41,7 @@ npm run app:start # run web app
 npm run deploy
 ```
 
-<img src="https://raw.githubusercontent.com/iamssen/terra-smart-contract-basic/main/readme-assets/screenshot.png" width="800"/>
+![screen shot](https://raw.githubusercontent.com/iamssen/terra-smart-contract-basic/main/readme-assets/screenshot.png)
 
 ## Commands
 
