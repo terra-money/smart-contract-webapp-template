@@ -4,8 +4,8 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "app:dev": "cross-env BROWSER=none react-scripts start",
-    "app:browser": "PORT=3000 node scripts/start.mjs",
+    "app:dev": "cross-env BROWSER=none PORT=9983 react-scripts start",
+    "app:browser": "PORT=9983 node scripts/start.mjs",
     "start": "multiplerun dev",
     "build": "react-scripts build",
     "test": "react-scripts test --colors --passWithNoTests"
@@ -15,7 +15,7 @@
       "npm run app:dev",
       {
         "command": "npm run app:browser",
-        "wait": "5000"
+        "wait": "15000"
       }
     ]
   },
@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@terra-money/terra.js": "^3.0.1",
-    "@terra-money/wallet-provider": "^3.2.0",
+    "@terra-money/wallet-provider": "^3.4.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-query": "^3.18.1"
