@@ -42,7 +42,7 @@ export function Tx() {
         if (pollResult.logs && pollResult.logs?.length > 0) {
           await Promise.all(
             TX_REFETCH_MAP[txKey].map((queryKey) => {
-              queryClient.invalidateQueries(queryKey, {
+              return queryClient.invalidateQueries(queryKey, {
                 refetchActive: true,
                 refetchInactive: false,
               });
