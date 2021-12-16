@@ -1,10 +1,7 @@
 import { generate } from 'cosmwasm-typescript-generator';
-import { ROOT } from './env.mjs';
+import { SCHEMA_DIRECTORY, TYPESCRIPT_OUT_FILES } from './env.mjs';
 
 generate({
-  schemaDir: path.resolve(ROOT, 'schema'),
-  outFile: [
-    path.resolve(ROOT, 'app/src/contract.ts'),
-    path.resolve(ROOT, 'test/src/contract.ts'),
-  ],
+  schemaDir: SCHEMA_DIRECTORY,
+  outFile: TYPESCRIPT_OUT_FILES,
 });
