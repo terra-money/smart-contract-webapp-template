@@ -10,7 +10,7 @@ This is a basic template for developing smart contract and web app together. Thi
 
 - Install Docker <https://docs.docker.com/get-docker/>
 - Install Rust <https://www.rust-lang.org/tools/install>
-- Install Node.js `brew install node` (required `npm@8` or higher)
+- Install Node.js <https://nodejs.org/> (recommend node lts version (v16). and update to `npm@8` or higher for workspace feature)
 
 This template requires Docker to run LocalTerra, Rust and Cargo to build Smart Contract, and Node.js.
 
