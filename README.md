@@ -34,7 +34,7 @@ cd myapp
 
 npm install
 
-npm run deploy # build contracts, build schema and build contract types 
+npm run deploy:localterra # build contracts, build schema and build contract types for localterra
 npm run app:start # run web app
 
 # After that, if you have modified the /contracts source codes, run this again
