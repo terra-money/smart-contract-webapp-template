@@ -1,10 +1,10 @@
 # Terra development template
 
-This is a basic template for developing smart contract and web app together. This template is based on [cw-template of CosmWasm](https://github.com/InterWasm/cw-template).
+This is a basic template for developing a web app that interacts with smart contracts. This template is based on [cw-template of CosmWasm](https://github.com/InterWasm/cw-template).
 
-> ⚠️ This template was tested only in macOS. We will conduct tests in a wider OS.
+> ⚠️ This template was tested only in macOS. We have yet conduct tests in a wider OS.
 
-# How to use
+# Instructions
 
 ## Requirements
 
@@ -26,7 +26,7 @@ cd localterra
 docker-compose up
 ```
 
-Start app development
+Then, start app development
 
 ```sh
 npx terra-templates get smart-contract:basic myapp
@@ -37,7 +37,7 @@ npm install
 npm run deploy # build contracts, build schema and build contract types 
 npm run app:start # run web app
 
-# After that, if you have modified the /contracts source codes, run this again
+# After that, if you have modified the /contracts source code, run this again
 npm run deploy
 ```
 
@@ -45,14 +45,14 @@ npm run deploy
 
 ## Commands
 
-All commands are organized in npm script. Please check the commands below.
+All commands are organized as npm script. Please refer to the commands below.
 
 - `npm run contract:build` This command builds sources in the `~/contracts/*` directories to `~/target`.
-- `npm run contract:schema` This command create `~/schema/*/*.json` schema files. 
-- `npm run contract:types` This command creates `app/src/contract.ts` file using the `~/schema/*/*.json` schema files.
-- `npm run app:start` This command run the web app.
+- `npm run contract:schema` This command creates `~/schema/*/*.json` schema files. 
+- `npm run contract:types` This command creates a `app/src/contract.ts` file using the `~/schema/*/*.json` schema files.
+- `npm run app:start` This command runs the web app.
 - `npm run build` This command runs `npm run contract:build`, `npm run contract:schema`, and `npm run contract:types` sequentially.
-- `npm run deploy` This command runs `npm run build` and deploy `*.wasm` files built thereafter to LocalTerra.
+- `npm run deploy` This command runs `npm run build` and deploys `*.wasm` files built thereafter to LocalTerra.
 - `npm run test` This command runs all the tests in the `~/contracts` and `~/app`.
 - `npm run test:integration` This command runs the integration tests on the `~/test` directory.
 
@@ -60,10 +60,10 @@ All commands are organized in npm script. Please check the commands below.
 
 #### [station.config.json](https://github.com/iamssen/terra-smart-contract-basic/blob/main/station.config.json)
 
-If you run `run app:start`, you can see a new chrome browser with station extension installed.
+If you run `run app:start`, you can see a new chrome browser with the Terra Station extension already installed.
 
-You can run the chrome browser with the test conditions you want just by modifying this `station.config.json` file without having to set the station extension separately for your test.
+You can run the chrome browser with the test conditions you want just by modifying this `station.config.json` file without having to set up the station extension separately for your test.
 
 #### [scripts](https://github.com/iamssen/terra-smart-contract-basic/tree/main/scripts)
 
-All scripts in this template were wrote using Google [zx](https://github.com/google/zx). You can modify these script files when you need to modify build or deploy conditions.
+All scripts in this template were wrote using Google [zx](https://github.com/google/zx). You can modify these script files when you need to modify the build or deploy conditions.
